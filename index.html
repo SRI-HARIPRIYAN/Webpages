@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Keep Learning</title>
+		<link
+			href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				min-height: 100vh;
+			}
+			header {
+				position: static;
+			}
+			.comp-name {
+				display: flex;
+				justify-content: center;
+				font-size: 3rem;
+				padding: 1rem;
+				background-color: rgb(13, 11, 11);
+				color: whitesmoke;
+			}
+
+			.comp-name i {
+				min-width: 80px;
+			}
+			.nav-list {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+				background: linear-gradient(blue, lightblue);
+			}
+
+			.nav-list li {
+				list-style-type: none;
+				display: inline-block;
+				margin: 0 10px;
+			}
+
+			.nav-list a,
+			.user {
+				text-decoration: none;
+				color: bisque;
+			}
+
+			.nav-list li a:hover {
+				color: azure;
+			}
+
+			.nav-list .cotc {
+				background-color: aqua;
+				padding: 0.3rem;
+				border-radius: 20px;
+			}
+
+			.nav-list .cotc a {
+				color: black;
+			}
+			main {
+				display: grid;
+				grid-template-columns: 1fr 30% 70%;
+			}
+			.c-dep {
+				position: relative;
+				width: min(25vw, 200px);
+				left: 0;
+				background-color: rgb(2, 16, 43);
+				height: calc(100vh - 155px);
+			}
+
+			.c-dep h3 {
+				padding: 0.4rem 0.2rem;
+
+				font-size: 1.5rem;
+				color: #fff;
+				text-align: center;
+				border-bottom: 2px solid #fff;
+			}
+
+			.c-dep .c-dep-form {
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: flex-start;
+				height: 400px;
+			}
+
+			.c-dep .c-dep-form .form-lbl {
+				padding: 8px;
+				margin: 0.4rem 0.1rem;
+				font-size: 1.3rem;
+				color: bisque;
+				text-align: center;
+				background: linear-gradient(blue, lightblue);
+				border-radius: 5px;
+			}
+
+			.c-dep-form .form-inputs {
+				width: 80%;
+				margin: 0.2rem auto;
+				padding: 4px;
+				border-radius: 10px;
+				transition: all 0.25s;
+			}
+
+			.c-dep-form .form-inputs:hover {
+				background-color: rgb(199, 199, 139);
+			}
+
+			.cen-contents {
+				position: relative;
+				top: 10%;
+				left: 10%;
+				background-color: aliceblue;
+				height: fit-content;
+			}
+
+			.cen-contents h3 {
+				font-size: 1.5rem;
+				padding: 20px;
+			}
+
+			.vid-links th {
+				border: 1px solid red;
+				padding: 1rem;
+				width: 20%;
+			}
+
+			.vid-links td {
+				text-align: center;
+				border: 2px solid aqua;
+				padding: 0.8rem 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header-section">
+			<h1 class="comp-name">
+				<i class="bx bxs-book-reader"></i>Keep Learning
+			</h1>
+
+			<nav class="nav-list">
+				<div class="user">User</div>
+				<ul>
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">News</a></li>
+				</ul>
+				<div class="cotc"><a href="#">Contact Us</a></div>
+			</nav>
+		</header>
+		<main>
+			<section class="c-dep">
+				<h3>Select the choice</h3>
+				<div class="c-dep-form">
+					<label class="form-lbl" for="regulation">Regulation</label>
+					<select
+						class="form-inputs"
+						name="regulation"
+						id="regulation"
+					>
+						<option value="2017">2017</option>
+						<option value="2021">2021</option>
+					</select>
+					<label class="form-lbl" for="department">Department</label>
+					<select
+						class="form-inputs"
+						name="department"
+						id="department"
+					>
+						<option value="cse">CSE</option>
+						<option value="it">IT</option>
+						<option value="ece">ECE</option>
+					</select>
+					<label class="form-lbl" for="sem">Semester</label>
+					<select class="form-inputs" name="sem" id="sem">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+				</div>
+			</section>
+			<section class="cen-contents">
+				<div class="videos">
+					<h3>Video Links</h3>
+					<div class="vid-links">
+						<table>
+							<thead>
+								<th>Subjects</th>
+								<th>References</th>
+							</thead>
+							<tbody id="vid-data">
+								<td>Shree</td>
+								<td>shree</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="notes"></div>
+			</section>
+		</main>
+	</body>
+	<script>
+		const sem = document.getElementById("sem");
+		const vid_data = document.querySelector("#vid-data");
+		const data = document.createElement("tbody");
+
+		sem.addEventListener("change", function () {
+			const val = this.value;
+			if (val === "6") {
+				vid_data.innerHTML =
+					"<tr><td>Embeded Systems and IOT</td><td><a href='https://youtu.be/Toa2w2xG0Aw?si=lcvOJ-h6HVB_ihRc' target='blank'>Click here</a></td></tr>";
+			} else {
+				vid_data.innerHTML = "";
+			}
+		});
+	</script>
+</html>
